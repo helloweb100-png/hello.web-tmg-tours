@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es-MX" class="no-js" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Boot: marca JS activo, detecta "reduce motion" y activa un failsafe por si script.js no carga -->
+<script>
+  (function (d, w) {
+    var h = d.documentElement;
+    h.className = h.className.replace('no-js', 'js is-loading');
+    if (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches) h.className += ' rm';
+    w.__tmgBoot = setTimeout(function () {
+      h.className = h.className.replace(/\bjs\b/, 'no-js').replace(' is-loading', '');
+    }, 9000);
+  })(document, window);
+</script>
+
+<title>TMG Tours Cancún | Chichén Itzá, Isla Mujeres y Cozumel</title>
+<meta name="description" content="Tours en Cancún con TMG Tours: catamarán con snorkel desde $699 MXN, Chichén Itzá, Isla Mujeres y Cozumel. Cotiza y reserva fácil por WhatsApp.">
+<meta name="keywords" content="tours en Cancún, tour en catamarán Cancún, snorkel con rayas, Chichén Itzá desde Cancún, tour Isla Mujeres, tour Cozumel, excursiones Cancún, TMG Tours">
+<meta name="author" content="TMG Tours">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#040d1c">
+<meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
+
+<!-- TODO (producción): agregar <link rel="canonical"> y og:url con el dominio final, y usar URL absoluta en og:image / twitter:image -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="TMG Tours">
+<meta property="og:title" content="TMG Tours Cancún | Chichén Itzá, Isla Mujeres y Cozumel">
+<meta property="og:description" content="Catamarán con snorkel desde $699 MXN, Chichén Itzá, Isla Mujeres y Cozumel. Cotiza por WhatsApp y vive el Caribe sin complicaciones.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de TMG Tours sobre una vista aérea de un catamarán en el Caribe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TMG Tours Cancún | Chichén Itzá, Isla Mujeres y Cozumel">
+<meta name="twitter:description" content="Catamarán con snorkel desde $699 MXN, Chichén Itzá, Isla Mujeres y Cozumel. Cotiza por WhatsApp.">
+<meta name="twitter:image" content="assets/img/og-image.jpg">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<!-- Fuentes autoalojadas (Bricolage Grotesque + Geist, licencia OFL) -->
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/logo-256.webp" as="image">
+<link rel="stylesheet" href="styles.css">
+<noscript><style>.loader{display:none!important}</style></noscript>
+
+<!-- Datos estructurados: negocio, oferta del catamarán y preguntas frecuentes -->
+<!-- TODO (producción): agregar "telephone", "url", "image" absoluta y enlaces "sameAs" (Facebook/Instagram) cuando el cliente los confirme -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TravelAgency",
+      "@id": "#negocio",
+      "name": "TMG Tours",
+      "description": "Agencia de tours en Cancún: catamarán con snorkel, Chichén Itzá, Isla Mujeres y Cozumel. Cotización y reservas por WhatsApp.",
+      "priceRange": "$$",
+      "currenciesAccepted": "MXN",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cancún",
+        "addressRegion": "Quintana Roo",
+        "addressCountry": "MX"
+      },
+      "areaServed": ["Cancún", "Isla Mujeres", "Cozumel", "Chichén Itzá"],
+      "knowsLanguage": "es",
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Tour en catamarán con snorkel (adulto)",
+          "price": "699",
+          "priceCurrency": "MXN",
+          "description": "No incluye boletos de ferry ni impuesto marino.",
+          "itemOffered": { "@type": "TouristTrip", "name": "Tour en catamarán con snorkel en el Caribe Mexicano" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Tour en catamarán con snorkel (menor)",
+          "price": "599",
+          "priceCurrency": "MXN",
+          "description": "No incluye boletos de ferry ni impuesto marino.",
+          "itemOffered": { "@type": "TouristTrip", "name": "Tour en catamarán con snorkel en el Caribe Mexicano" }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta el tour en catamarán?",
+          "acceptedAnswer": { "@type": "Answer", "text": "El tour en catamarán cuesta $699 MXN por adulto y $599 MXN por menor. No incluye boletos de ferry ni impuesto marino." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué incluye el tour en catamarán?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Incluye las actividades que ves en nuestros videos: paseo en catamarán, snorkel, banco de arena y encuentro con rayas. Los boletos de ferry y el impuesto marino se pagan aparte. Te confirmamos todos los detalles por WhatsApp antes de reservar." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo reservo mi tour?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Escríbenos por WhatsApp o llena el formulario de esta página con el tour, la fecha y cuántas personas viajan. Te respondemos con disponibilidad, precio y qué incluye." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuestan los tours a Chichén Itzá, Isla Mujeres y Cozumel?",
+          "acceptedAnswer": { "@type": "Answer", "text": "El precio depende de la fecha, el número de personas y lo que quieras incluir. Escríbenos por WhatsApp y te cotizamos." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los niños pagan tarifa especial?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí. En el tour en catamarán los menores pagan $599 MXN en lugar de $699 MXN. Para los demás tours, pregúntanos por WhatsApp." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué debo llevar al tour?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Traje de baño, toalla, bloqueador solar biodegradable, ropa cómoda, efectivo y tu celular o cámara con funda acuática." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- =========================================================
+     SPRITE DE ICONOS (se rellena con los iconos usados)
+========================================================== -->
+<!-- Sprite de iconos: Phosphor Icons (MIT), peso "bold"; WhatsApp en "fill" -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="i-arrow-down" viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,152.49l-72,72a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L116,187V40a12,12,0,0,1,24,0V187l51.51-51.52a12,12,0,0,1,17,17Z"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 256 256" fill="currentColor"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></symbol>
+<symbol id="i-bank" viewBox="0 0 256 256" fill="currentColor"><path d="M24,108H44v48H32a12,12,0,0,0,0,24H224a12,12,0,0,0,0-24H212V108h20a12,12,0,0,0,6.29-22.22l-104-64a12,12,0,0,0-12.58,0l-104,64A12,12,0,0,0,24,108Zm44,0H92v48H68Zm72,0v48H116V108Zm48,48H164V108h24ZM128,46.09,189.6,84H66.4ZM252,208a12,12,0,0,1-12,12H16a12,12,0,0,1,0-24H240A12,12,0,0,1,252,208Z"/></symbol>
+<symbol id="i-boat" viewBox="0 0 256 256" fill="currentColor"><path d="M222.33,106.79,212,103.35V56a20,20,0,0,0-20-20H140V24a12,12,0,0,0-24,0V36H64A20,20,0,0,0,44,56v47.35l-10.33,3.44a20,20,0,0,0-13.67,19V152c0,64.63,100.8,90.57,105.09,91.64a11.94,11.94,0,0,0,5.82,0C135.2,242.57,236,216.63,236,152V125.77A20,20,0,0,0,222.33,106.79ZM68,60H188V95.35L131.79,76.62a11.85,11.85,0,0,0-7.58,0L68,95.35Zm144,92c0,36.69-58.08,60.43-84,67.59-25.94-7.17-84-30.9-84-67.59V128.65l72-24V168a12,12,0,0,0,24,0V104.65l72,24Z"/></symbol>
+<symbol id="i-calendar-blank" viewBox="0 0 256 256" fill="currentColor"><path d="M208,28H188V24a12,12,0,0,0-24,0v4H92V24a12,12,0,0,0-24,0v4H48A20,20,0,0,0,28,48V208a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V48A20,20,0,0,0,208,28ZM68,52a12,12,0,0,0,24,0h72a12,12,0,0,0,24,0h16V76H52V52ZM52,204V100H204V204Z"/></symbol>
+<symbol id="i-camera" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></symbol>
+<symbol id="i-chat-circle-text" viewBox="0 0 256 256" fill="currentColor"><path d="M172,108a12,12,0,0,1-12,12H96a12,12,0,0,1,0-24h64A12,12,0,0,1,172,108Zm-12,28H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24Zm76-8A108,108,0,0,1,78.77,224.15L46.34,235A20,20,0,0,1,21,209.66l10.81-32.43A108,108,0,1,1,236,128Zm-24,0A84,84,0,1,0,55.27,170.06a12,12,0,0,1,1,9.81l-9.93,29.79,29.79-9.93a12.1,12.1,0,0,1,3.8-.62,12,12,0,0,1,6,1.62A84,84,0,0,0,212,128Z"/></symbol>
+<symbol id="i-chats-circle" viewBox="0 0 256 256" fill="currentColor"><path d="M236.34,187.09A84,84,0,0,0,172.29,68.9,84,84,0,0,0,19.66,139.09l-6.84,23.26a20,20,0,0,0,24.83,24.83l23.26-6.84a83.94,83.94,0,0,0,22.76,6.74,84.06,84.06,0,0,0,111.42,41.26l23.26,6.84a20,20,0,0,0,24.83-24.83ZM62,155.5a11.88,11.88,0,0,0-3.39.49l-20.72,6.09L44,141.35a12,12,0,0,0-.93-9A60,60,0,1,1,67.7,156.92,12,12,0,0,0,62,155.5Zm150.89,24.8a12,12,0,0,0-.93,9l6.09,20.73L197.36,204a12,12,0,0,0-9.06.93A60,60,0,0,1,111,186.63a83.93,83.93,0,0,0,68.55-91.37,60,60,0,0,1,33.38,85Z"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 256 256" fill="currentColor"><path d="M176.49,95.51a12,12,0,0,1,0,17l-56,56a12,12,0,0,1-17,0l-24-24a12,12,0,1,1,17-17L112,143l47.51-47.52A12,12,0,0,1,176.49,95.51ZM236,128A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Z"/></symbol>
+<symbol id="i-fish" viewBox="0 0 256 256" fill="currentColor"><path d="M172,76a16,16,0,1,1-16-16A16,16,0,0,1,172,76Zm48.22,69.58a102,102,0,0,1-26.78,31.29c-.24.2-.47.39-.72.56a109.52,109.52,0,0,1-13.55,8.83c-18.3,10.07-40.88,15.9-67.22,17.36L91,249a12,12,0,0,1-10.89,7q-.41,0-.81,0a12,12,0,0,1-10.66-8.44l-14.16-46-46-14.19A12,12,0,0,1,7,165l45.4-20.92c1.47-26.33,7.3-48.91,17.37-67.2A110.62,110.62,0,0,1,78.57,63.3c.16-.22.34-.44.51-.66A101.91,101.91,0,0,1,110.41,35.8c25.55-14.19,54.33-16.37,74-15.69,17.76.61,36.49,4,40.76,6.52a12.07,12.07,0,0,1,4.23,4.23c2.52,4.26,5.92,23,6.53,40.76C236.57,91.26,234.4,120,220.22,145.58Zm-68.7,26.66a56.92,56.92,0,0,1-11.12-8.64,55.81,55.81,0,0,1-15.9-32.1,55.81,55.81,0,0,1-32.1-15.9,56.63,56.63,0,0,1-8.63-11.13q-7,20.48-7.7,47.69a12,12,0,0,1-7,10.61L45.51,173.64l22.1,6.82a12,12,0,0,1,7.94,7.94l6.79,22.09L93.23,186.9a12,12,0,0,1,10.61-7Q131,179.29,151.52,172.24ZM209,47c-16.25-3.14-61.81-9-95,14.91a76.73,76.73,0,0,0-14,13,32,32,0,0,0,35,32.94,12,12,0,0,1,13.09,13.09,32,32,0,0,0,33,35,76.33,76.33,0,0,0,13-14C218.05,108.81,212.18,63.22,209,47Z"/></symbol>
+<symbol id="i-goggles" viewBox="0 0 256 256" fill="currentColor"><path d="M180,60H76A76.08,76.08,0,0,0,0,136v4a24,24,0,0,0,13.74,21.69c3.15,8.71,10.51,16.75,21.52,23.27,11.52,6.81,25.6,11,36.74,11a44.06,44.06,0,0,0,42.32-32h27.36A44.06,44.06,0,0,0,184,196c18.53,0,50.62-12.81,58.31-34.33A24,24,0,0,0,256,140v-4A76.08,76.08,0,0,0,180,60ZM76,84H180a52.07,52.07,0,0,1,51.13,42.6A65,65,0,0,0,220.74,119c-11.52-6.81-25.6-11-36.74-11a44.06,44.06,0,0,0-42.32,32H114.32A44.06,44.06,0,0,0,72,108c-13.4,0-33.9,6.71-47.13,18.56A52.08,52.08,0,0,1,76,84Zm-4,88c-14.13,0-36-12.15-36-20,0-2.74,3.55-7.61,11.48-12.3,9-5.32,18.8-7.7,24.52-7.7a20,20,0,0,1,0,40Zm136.52-7.7c-9,5.32-18.8,7.7-24.52,7.7a20,20,0,0,1,0-40c14.13,0,36,12.15,36,20C220,154.74,216.45,159.61,208.52,164.3Z"/></symbol>
+<symbol id="i-handshake" viewBox="0 0 256 256" fill="currentColor"><path d="M253.88,108.11l-25.53-51a20,20,0,0,0-26.83-9L178.34,59.7,131.7,44.58a12.14,12.14,0,0,0-7.4,0L77.66,59.7,54.48,48.11a20,20,0,0,0-26.83,9L2.12,108.11a20,20,0,0,0,9,26.83l26.67,13.34,51.18,37.41A12.15,12.15,0,0,0,93,187.62l62,16a12.27,12.27,0,0,0,3,.38,12,12,0,0,0,8.48-3.52l52.62-52.62,25.83-12.92a20,20,0,0,0,8.95-26.83Zm-58.12,29.15-27.52-26a12,12,0,0,0-16.76.26c-9.66,9.74-25.06,16.81-40.81,9.55l38.19-37h22.72l25.81,51.63ZM47.32,71.37,60.59,78l-22,43.9-13.27-6.63Zm107,107.3L101.23,165l-42-30.66L85.17,82.5,128,68.61l1.69.55L90,107.68l-.13.12a20,20,0,0,0,3.4,31c20.95,13.39,46,12.07,66.33-2.73l19.2,18.15Zm63-56.77-22-43.9,13.27-6.63,21.95,43.9ZM118.55,219a12,12,0,0,1-14.62,8.62l-26.6-6.87a12,12,0,0,1-4.08-1.93L48.92,201a12,12,0,0,1,14.16-19.37l22.47,16.42,24.38,6.29A12,12,0,0,1,118.55,219Z"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 256 256" fill="currentColor"><path d="M128,60a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,60Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,124Zm0-112a92.1,92.1,0,0,0-92,92c0,77.36,81.64,135.4,85.12,137.83a12,12,0,0,0,13.76,0,259,259,0,0,0,42.18-39C205.15,170.57,220,136.37,220,104A92.1,92.1,0,0,0,128,12Zm31.3,174.71A249.35,249.35,0,0,1,128,216.89a249.35,249.35,0,0,1-31.3-30.18C80,167.37,60,137.31,60,104a68,68,0,0,1,136,0C196,137.31,176,167.37,159.3,186.71Z"/></symbol>
+<symbol id="i-minus" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></symbol>
+<symbol id="i-mountains" viewBox="0 0 256 256" fill="currentColor"><path d="M160,80a32,32,0,1,0-32-32A32,32,0,0,0,160,80Zm0-40a8,8,0,1,1-8,8A8,8,0,0,1,160,40Zm94.32,153.88L199.76,101.8A19.85,19.85,0,0,0,182.55,92h0a19.83,19.83,0,0,0-17.2,9.8l-18.7,31.55-37.42-63.5a20,20,0,0,0-34.46,0L1.66,193.91A12,12,0,0,0,12,212H244a12,12,0,0,0,10.32-18.12ZM92,87.87,108.57,116H75.43ZM33,188l28.28-48h61.44L151,188Zm145.86,0L160.56,157l22-37.1L222.94,188Z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 256 256" fill="currentColor"><path d="M200,28H160a20,20,0,0,0-20,20V208a20,20,0,0,0,20,20h40a20,20,0,0,0,20-20V48A20,20,0,0,0,200,28Zm-4,176H164V52h32ZM96,28H56A20,20,0,0,0,36,48V208a20,20,0,0,0,20,20H96a20,20,0,0,0,20-20V48A20,20,0,0,0,96,28ZM92,204H60V52H92Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 256 256" fill="currentColor"><path d="M234.49,111.07,90.41,22.94A20,20,0,0,0,60,39.87V216.13a20,20,0,0,0,30.41,16.93l144.08-88.13a19.82,19.82,0,0,0,0-33.86ZM84,208.85V47.15L216.16,128Z"/></symbol>
+<symbol id="i-plus" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 256 256" fill="currentColor"><path d="M68,100A12,12,0,0,1,80,88h96a12,12,0,0,1,0,24H80A12,12,0,0,1,68,100Zm12,52h96a12,12,0,0,0,0-24H80a12,12,0,0,0,0,24ZM236,56V208a12,12,0,0,1-17.37,10.73L192,205.42l-26.63,13.31a12,12,0,0,1-10.74,0L128,205.42l-26.63,13.31a12,12,0,0,1-10.74,0L64,205.42,37.37,218.73A12,12,0,0,1,20,208V56A20,20,0,0,1,40,36H216A20,20,0,0,1,236,56Zm-24,4H44V188.58l14.63-7.31a12,12,0,0,1,10.74,0L96,194.58l26.63-13.31a12,12,0,0,1,10.74,0L160,194.58l26.63-13.31a12,12,0,0,1,10.74,0L212,188.58Z"/></symbol>
+<symbol id="i-sailboat" viewBox="0 0 256 256" fill="currentColor"><path d="M250.82,170.8A12,12,0,0,0,240,164H148V148h68a12,12,0,0,0,8.88-20.07L148,43.36V12a12,12,0,0,0-21.19-7.71l-104,124A12,12,0,0,0,32,148h92v16H16a12,12,0,0,0-9.37,19.5l29.6,37A19.9,19.9,0,0,0,51.84,228H204.16a19.9,19.9,0,0,0,15.61-7.51l29.6-37A12,12,0,0,0,250.82,170.8ZM188.87,124H148V79ZM57.73,124,124,45v79Zm144.5,80H53.77L41,188H215Z"/></symbol>
+<symbol id="i-speaker-high" viewBox="0 0 256 256" fill="currentColor"><path d="M157.27,21.22a12,12,0,0,0-12.64,1.31L75.88,76H32A20,20,0,0,0,12,96v64a20,20,0,0,0,20,20H75.88l68.75,53.47A12,12,0,0,0,164,224V32A12,12,0,0,0,157.27,21.22ZM36,100H68v56H36Zm104,99.46L92,162.13V93.87l48-37.33ZM212,128a44,44,0,0,1-11,29.11,12,12,0,1,1-18-15.88,20,20,0,0,0,0-26.43,12,12,0,0,1,18-15.86A43.94,43.94,0,0,1,212,128Zm40,0a83.87,83.87,0,0,1-21.39,56,12,12,0,0,1-17.89-16,60,60,0,0,0,0-80,12,12,0,1,1,17.88-16A83.87,83.87,0,0,1,252,128Z"/></symbol>
+<symbol id="i-speaker-slash" viewBox="0 0 256 256" fill="currentColor"><path d="M56.88,31.93A12,12,0,1,0,39.12,48.07L64.51,76H32A20,20,0,0,0,12,96v64a20,20,0,0,0,20,20H75.88l68.75,53.47A12,12,0,0,0,164,224V185.44l35.12,38.63a12,12,0,0,0,17.76-16.14ZM36,100H68v56H36Zm104,99.46L92,162.13V106.24L140,159Zm-31-134a12,12,0,0,1,2.11-16.84l33.51-26.07A12,12,0,0,1,164,32V94.94a12,12,0,0,1-24,0V56.54l-14.15,11A12,12,0,0,1,109,65.44Zm74,49.35a12,12,0,0,1,18-15.85,44,44,0,0,1,5.55,50.21,12,12,0,0,1-21-11.55A19.67,19.67,0,0,0,188,128,20,20,0,0,0,183,114.79ZM252,128a84.18,84.18,0,0,1-19.11,53.35,12,12,0,1,1-18.53-15.25A60,60,0,0,0,212.73,88a12,12,0,1,1,17.88-16A83.87,83.87,0,0,1,252,128Z"/></symbol>
+<symbol id="i-star-four" viewBox="0 0 256 256" fill="currentColor"><path d="M230.86,109.25,169.18,86.82,146.75,25.14a19.95,19.95,0,0,0-37.5,0L86.82,86.82,25.14,109.25a19.95,19.95,0,0,0,0,37.5l61.68,22.43,22.43,61.68a19.95,19.95,0,0,0,37.5,0l22.43-61.68,61.68-22.43a19.95,19.95,0,0,0,0-37.5Zm-75.14,39.29a12,12,0,0,0-7.18,7.18L128,212.21l-20.54-56.49a12,12,0,0,0-7.18-7.18L43.79,128l56.49-20.54a12,12,0,0,0,7.18-7.18L128,43.79l20.54,56.49a12,12,0,0,0,7.18,7.18L212.21,128Z"/></symbol>
+<symbol id="i-sun-horizon" viewBox="0 0 256 256" fill="currentColor"><path d="M240,148H203.89c.07-1.33.11-2.66.11-4a76,76,0,0,0-152,0c0,1.34,0,2.67.11,4H16a12,12,0,0,0,0,24H240a12,12,0,0,0,0-24ZM76,144a52,52,0,0,1,104,0c0,1.34-.07,2.67-.17,4H76.17C76.07,146.67,76,145.34,76,144Zm144,56a12,12,0,0,1-12,12H48a12,12,0,0,1,0-24H208A12,12,0,0,1,220,200ZM12.62,92.21a12,12,0,0,1,15.17-7.59l12,4a12,12,0,1,1-7.58,22.77l-12-4A12,12,0,0,1,12.62,92.21Zm56-48.41a12,12,0,1,1,22.76-7.59l4,12A12,12,0,1,1,72.62,55.8Zm140,60a12,12,0,0,1,7.59-15.18l12-4a12,12,0,0,1,7.58,22.77l-12,4a12,12,0,0,1-15.17-7.59Zm-48-55.59,4-12a12,12,0,1,1,22.76,7.59l-4,12a12,12,0,1,1-22.76-7.59Z"/></symbol>
+<symbol id="i-tree-palm" viewBox="0 0 256 256" fill="currentColor"><path d="M240.69,50.47a70.87,70.87,0,0,0-103.54,0A76.58,76.58,0,0,0,128,62.19a76.58,76.58,0,0,0-9.15-11.72,70.87,70.87,0,0,0-103.54,0,12,12,0,0,0,3.9,19.28L66,90.12a75.45,75.45,0,0,0-43.43,89,12,12,0,0,0,18.85,6.41L116,128.75V224a12,12,0,0,0,24,0V128.75l74.54,56.79a12,12,0,0,0,18.85-6.41,75.45,75.45,0,0,0-43.43-89l46.83-20.37a12,12,0,0,0,3.9-19.28ZM67.08,52a47.16,47.16,0,0,1,34.38,15A52.41,52.41,0,0,1,112.3,84.08L48,56.1A46.28,46.28,0,0,1,67.08,52ZM44.39,153.15a51.72,51.72,0,0,1,38.14-43.38A52.83,52.83,0,0,1,96.09,108a50.4,50.4,0,0,1,7,.47ZM205,133.81a51.14,51.14,0,0,1,6.57,19.34L153,108.46a52.21,52.21,0,0,1,20.51,1.31A51.61,51.61,0,0,1,205,133.81ZM143.7,84.08A52.41,52.41,0,0,1,154.54,67a47.16,47.16,0,0,1,34.38-15A46.28,46.28,0,0,1,208,56.1Z"/></symbol>
+<symbol id="i-waves" viewBox="0 0 256 256" fill="currentColor"><path d="M225.24,174.74a12,12,0,0,1-1.58,16.89C205.49,206.71,189.06,212,174.15,212c-19.76,0-36.86-9.29-51.88-17.44-25.06-13.62-44.86-24.37-74.61.3a12,12,0,1,1-15.32-18.48c42.25-35,75-17.23,101.39-2.92,25.06,13.61,44.86,24.37,74.61-.3A12,12,0,0,1,225.24,174.74Zm-16.9-57.59c-29.75,24.67-49.55,13.91-74.61.3-26.35-14.3-59.14-32.11-101.39,2.92a12,12,0,0,0,15.32,18.48c29.75-24.67,49.55-13.92,74.61-.3,15,8.15,32.12,17.44,51.88,17.44,14.91,0,31.34-5.29,49.51-20.36a12,12,0,0,0-15.32-18.48ZM47.66,82.84c29.75-24.67,49.55-13.92,74.61-.3,15,8.15,32.12,17.44,51.88,17.44,14.91,0,31.34-5.29,49.51-20.36a12,12,0,0,0-15.32-18.48c-29.75,24.67-49.55,13.92-74.61.3-26.35-14.3-59.14-32.11-101.39,2.93A12,12,0,1,0,47.66,82.84Z"/></symbol>
+<symbol id="i-whatsapp-logo-fill" viewBox="0 0 256 256" fill="currentColor"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
+<symbol id="i-x" viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></symbol>
+</svg>
+
+<!-- =========================================================
+     LOADER
+========================================================== -->
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando TMG Tours">
+  <div class="loader__water" aria-hidden="true">
+    <svg class="loader__wave" viewBox="0 0 2880 200" preserveAspectRatio="none">
+      <path d="M0,100 C240,40 480,40 720,100 S1200,160 1440,100 S1920,40 2160,100 S2640,160 2880,100 V200 H0 Z"/>
+    </svg>
+    <div class="loader__fill"></div>
+  </div>
+  <div class="loader__core">
+    <div class="loader__ring" aria-hidden="true">
+      <svg viewBox="0 0 220 220">
+        <circle class="loader__track" cx="110" cy="110" r="100" pathLength="100"/>
+        <circle class="loader__bar" cx="110" cy="110" r="100" pathLength="100"/>
+      </svg>
+      <div class="loader__ticks"></div>
+      <img class="loader__logo" src="assets/img/logo-256.webp" width="256" height="256" alt="">
+    </div>
+    <p class="loader__count"><span id="loader-num">0</span><small>%</small></p>
+    <p class="loader__label">Preparando tu aventura</p>
+  </div>
+</div>
+
+<!-- Barra de progreso de lectura -->
+<div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+<!-- =========================================================
+     HEADER
+========================================================== -->
+<header class="site-header" id="header">
+  <div class="site-header__inner">
+    <a class="brand" href="#inicio" aria-label="TMG Tours, ir al inicio">
+      <img class="brand__logo" src="assets/img/logo-128.webp" width="128" height="128" alt="">
+      <span class="brand__name">TMG <b>Tours</b></span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <ul class="nav__list">
+        <li><a href="#catamaran">Catamarán</a></li>
+        <li><a href="#tours">Tours</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#como-reservar">Cómo reservar</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--sun btn--sm header__cta" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero planear mi aventura en Cancún.">
+      <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+      <span>Quiero mi aventura</span>
+    </a>
+
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Menú móvil -->
+<div class="menu" id="menu" inert data-lenis-prevent>
+  <nav class="menu__nav" aria-label="Menú móvil">
+    <a href="#catamaran" class="menu__link" style="--i:0">Catamarán</a>
+    <a href="#tours" class="menu__link" style="--i:1">Tours</a>
+    <a href="#galeria" class="menu__link" style="--i:2">Galería</a>
+    <a href="#como-reservar" class="menu__link" style="--i:3">Cómo reservar</a>
+    <a href="#preguntas" class="menu__link" style="--i:4">Preguntas</a>
+  </nav>
+  <a class="btn btn--sun btn--lg menu__cta" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero planear mi aventura en Cancún." style="--i:5">
+    <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+    <span>Quiero mi aventura</span>
+  </a>
+</div>
+
+<main id="contenido" class="page">
+
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title" data-pause-offscreen>
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__sky"></div>
+      <div class="hero__orb hero__orb--sea"></div>
+      <div class="hero__orb hero__orb--sun"></div>
+      <div class="hero__rays"></div>
+      <canvas class="hero__canvas" id="sparkles"></canvas>
+      <div class="hero__waves">
+        <svg class="wave wave--3" viewBox="0 0 2880 200" preserveAspectRatio="none"><path d="M0,100 C240,40 480,40 720,100 S1200,160 1440,100 S1920,40 2160,100 S2640,160 2880,100 V200 H0 Z"/></svg>
+        <svg class="wave wave--2" viewBox="0 0 2880 200" preserveAspectRatio="none"><path d="M0,100 C240,40 480,40 720,100 S1200,160 1440,100 S1920,40 2160,100 S2640,160 2880,100 V200 H0 Z"/></svg>
+        <svg class="wave wave--1" viewBox="0 0 2880 200" preserveAspectRatio="none"><path d="M0,100 C240,40 480,40 720,100 S1200,160 1440,100 S1920,40 2160,100 S2640,160 2880,100 V200 H0 Z"/></svg>
+      </div>
+    </div>
+
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow hero__eyebrow" data-hero="1">
+          <svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg>
+          TMG Tours en Cancún
+        </p>
+
+        <h1 class="hero__title" id="hero-title" data-hero="2">
+          <span class="sr-only">Tours en Cancún: catamarán, Chichén Itzá, Isla Mujeres y Cozumel. </span>
+          <span class="hero__line" aria-hidden="true">Vive el Caribe</span>
+          <span class="hero__line hero__line--rot" aria-hidden="true">
+            <span class="rot" id="rotator">
+              <span class="rot__item is-on">en catamarán.</span>
+              <span class="rot__item">entre pirámides.</span>
+              <span class="rot__item">en Isla Mujeres.</span>
+              <span class="rot__item">en Cozumel.</span>
+            </span>
+          </span>
+        </h1>
+
+        <p class="hero__lead" data-hero="3">
+          Catamarán, Chichén Itzá, Isla Mujeres y Cozumel. Dinos tu fecha por WhatsApp y armamos tu día perfecto.
+        </p>
+
+        <div class="hero__cta" data-hero="4">
+          <a class="btn btn--sun btn--lg" href="#contacto" data-wa data-magnetic data-wa-msg="Hola TMG Tours, estoy listo para mi aventura en Cancún. ¿Qué tours tienen disponibles?">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+            <span>Estoy listo para mi aventura</span>
+          </a>
+          <a class="btn btn--glass btn--lg" href="#tours">
+            <span>Ver los tours</span>
+            <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__stage" data-tilt data-hero="5" role="group" aria-label="Videos de nuestros tours en catamarán">
+        <div class="stage__glow" aria-hidden="true"></div>
+
+        <figure class="phone phone--b" aria-label="Reel: snorkel y rayas en aguas cristalinas">
+          <div class="phone__screen">
+            <video class="phone__video" data-video muted loop playsinline preload="metadata" poster="assets/img/poster-snorkel.webp">
+              <source src="assets/video/reel-snorkel-loop.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <figure class="phone phone--a" aria-label="Reel: nuestro catamarán navegando en el Caribe">
+          <div class="phone__screen">
+            <video class="phone__video" data-video muted loop playsinline preload="metadata" poster="assets/img/poster-catamaran.webp">
+              <source src="assets/video/reel-catamaran-loop.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <div class="spin-badge" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="spin-badge__ring">
+            <defs><path id="badge-path" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+            <text><textPath href="#badge-path" textLength="498" lengthAdjust="spacing">TMG TOURS - CANCÚN - CARIBE MEXICANO - </textPath></text>
+          </svg>
+          <span class="spin-badge__core"><svg class="ic" aria-hidden="true"><use href="#i-sun-horizon"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       MARQUEE (único de la página)
+  ======================================================== -->
+  <div class="marquee" aria-hidden="true" data-marquee>
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Chichén Itzá</span><svg class="ic"><use href="#i-star-four"/></svg>
+        <span class="is-outline">Isla Mujeres</span><svg class="ic"><use href="#i-star-four"/></svg>
+        <span>Cozumel</span><svg class="ic"><use href="#i-star-four"/></svg>
+        <span class="is-outline">Catamarán</span><svg class="ic"><use href="#i-star-four"/></svg>
+        <span>Snorkel</span><svg class="ic"><use href="#i-star-four"/></svg>
+        <span class="is-outline">Cancún</span><svg class="ic"><use href="#i-star-four"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================
+       MANIFIESTO (texto que se ilumina con el scroll)
+  ======================================================== -->
+  <section class="manifesto" id="manifiesto" data-scrub="manifesto" aria-labelledby="manifesto-title">
+    <div class="manifesto__pin">
+      <p class="manifesto__text" id="manifesto-title" data-words>
+        Un buen día en el <mark>Caribe</mark> no se improvisa. Elegimos contigo el plan, te decimos qué incluye y tú solo te dedicas a lo importante: <mark>nadar</mark>, <mark>explorar</mark> y volver con historias para contar.
+      </p>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       ESCENA CINEMATOGRÁFICA (la imagen se abre en grande)
+  ======================================================== -->
+  <section class="scene" id="escena" data-scrub="scene" aria-labelledby="scene-title">
+    <div class="scene__pin">
+      <div class="scene__ghost" aria-hidden="true" data-text="CARIBE"></div>
+      <div class="scene__frame">
+        <img class="scene__img" src="assets/img/expand-catamaran.webp" srcset="assets/img/expand-catamaran-1400.webp 1400w, assets/img/expand-catamaran.webp 2400w" sizes="100vw" width="2400" height="1350" loading="lazy" decoding="async"
+             alt="Vista aérea de un catamarán blanco navegando en aguas turquesa del Caribe mexicano">
+        <div class="scene__shade"></div>
+      </div>
+      <div class="scene__copy">
+        <h2 class="scene__title" id="scene-title">El Caribe que soñaste, a un mensaje de distancia.</h2>
+        <p class="scene__text">Aguas turquesa, arrecifes y ruinas milenarias. Tú eliges el plan, nosotros lo hacemos realidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       CATAMARÁN (experiencia estrella con precio real)
+  ======================================================== -->
+  <section class="cata section" id="catamaran" aria-labelledby="cata-title" data-pause-offscreen>
+    <div class="cata__bg" aria-hidden="true">
+      <span class="blob blob--1"></span><span class="blob blob--2"></span>
+    </div>
+    <div class="container cata__grid">
+
+      <div class="cata__media" data-reveal="scale">
+        <div class="cata__phone-wrap">
+          <figure class="phone phone--feature" aria-label="Reel completo del tour en catamarán">
+            <div class="phone__screen">
+              <video class="phone__video" id="cata-video" data-video muted loop playsinline preload="none" poster="assets/img/poster-catamaran.webp">
+                <source src="assets/video/reel-catamaran-full.mp4" type="video/mp4">
+              </video>
+              <div class="phone__controls">
+                <button class="icon-btn" type="button" data-video-play aria-label="Pausar video" aria-pressed="true">
+                  <svg class="ic ic--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                  <svg class="ic ic--play" aria-hidden="true"><use href="#i-play"/></svg>
+                </button>
+                <button class="icon-btn" type="button" data-video-mute aria-label="Activar sonido" aria-pressed="false">
+                  <svg class="ic ic--muted" aria-hidden="true"><use href="#i-speaker-slash"/></svg>
+                  <svg class="ic ic--sound" aria-hidden="true"><use href="#i-speaker-high"/></svg>
+                </button>
+              </div>
+            </div>
+          </figure>
+          <div class="cata__ring" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="cata__body">
+        <p class="eyebrow" data-reveal>Experiencia estrella</p>
+        <h2 class="h2" id="cata-title" data-split>Catamarán, snorkel y rayas en agua cristalina.</h2>
+        <p class="lead" data-reveal>Un día completo en el mar turquesa, justo como en el reel. Sube, nada y deja que el Caribe haga el resto.</p>
+
+        <div class="price" data-reveal>
+          <div class="price__col">
+            <span class="price__who">Adultos</span>
+            <span class="price__amt"><sup>$</sup><span data-count="699">699</span><small>MXN</small></span>
+          </div>
+          <div class="price__sep" aria-hidden="true"></div>
+          <div class="price__col">
+            <span class="price__who">Menores</span>
+            <span class="price__amt"><sup>$</sup><span data-count="599">599</span><small>MXN</small></span>
+          </div>
+        </div>
+
+        <p class="note" data-reveal>
+          <svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg>
+          <span><strong>No incluye</strong> boletos de ferry ni impuesto marino.</span>
+        </p>
+
+        <ul class="feats" data-reveal-group>
+          <li class="feat">
+            <span class="feat__ic"><svg class="ic" aria-hidden="true"><use href="#i-sailboat"/></svg></span>
+            <span class="feat__t">Paseo en catamarán</span>
+            <span class="feat__d">Navega por aguas turquesa</span>
+          </li>
+          <li class="feat">
+            <span class="feat__ic"><svg class="ic" aria-hidden="true"><use href="#i-goggles"/></svg></span>
+            <span class="feat__t">Snorkel</span>
+            <span class="feat__d">Agua clara y vida marina</span>
+          </li>
+          <li class="feat">
+            <span class="feat__ic"><svg class="ic" aria-hidden="true"><use href="#i-waves"/></svg></span>
+            <span class="feat__t">Banco de arena</span>
+            <span class="feat__d">Agua baja y arena blanca</span>
+          </li>
+          <li class="feat">
+            <span class="feat__ic"><svg class="ic" aria-hidden="true"><use href="#i-fish"/></svg></span>
+            <span class="feat__t">Encuentro con rayas</span>
+            <span class="feat__d">Conviven de cerca contigo</span>
+          </li>
+        </ul>
+
+        <div class="cata__cta" data-reveal>
+          <a class="btn btn--sun btn--lg" href="#contacto" data-wa data-magnetic data-wa-msg="Hola TMG Tours, quiero mi lugar en el tour en catamarán. ¿Qué fechas tienen disponibles?">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+            <span>Quiero mi lugar en el catamarán</span>
+          </a>
+          <p class="fine">Te confirmamos fechas y horarios por WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       TOURS MÁS VENDIDOS (scroll horizontal anclado)
+  ======================================================== -->
+  <section class="tours" id="tours" data-hscroll aria-labelledby="tours-title">
+    <div class="tours__pin">
+      <div class="tours__track">
+
+        <div class="tours__intro">
+          <h2 class="h2" id="tours-title" data-split>Los tours más vendidos de TMG.</h2>
+          <p class="lead" data-reveal>Tres destinos que nunca fallan. Elige el tuyo y te cotizamos por WhatsApp.</p>
+          <div class="tours__hint" aria-hidden="true">
+            <span class="tours__hint-line"></span>
+            <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </div>
+        </div>
+
+        <article class="tour tour--1">
+          <div class="tour__img">
+            <img src="assets/img/chichen-portrait.webp" width="1100" height="1650" loading="lazy" decoding="async"
+                 alt="Pirámide El Castillo de Chichén Itzá entre vegetación y cielo azul">
+          </div>
+          <div class="tour__body">
+            <h3 class="tour__name">Chichén Itzá</h3>
+            <p class="tour__desc">Camina frente a una de las 7 Maravillas del Mundo Moderno.</p>
+            <ul class="chips">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-bank"/></svg>Maravilla del mundo</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-mountains"/></svg>Historia maya</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg>Fotos épicas</li>
+            </ul>
+            <a class="btn btn--sun" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero conocer Chichén Itzá. ¿Me cotizan el tour?">
+              <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+              <span>Quiero conocer Chichén Itzá</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="tour tour--2">
+          <div class="tour__img">
+            <img src="assets/img/isla-aerial.webp" width="1800" height="1199" loading="lazy" decoding="async"
+                 alt="Vista aérea de una playa caribeña de arena dorada, palmeras y agua turquesa, como las de Isla Mujeres">
+          </div>
+          <div class="tour__body">
+            <h3 class="tour__name">Isla Mujeres</h3>
+            <p class="tour__desc">Playas de agua turquesa a pocos minutos de Cancún.</p>
+            <ul class="chips">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-boat"/></svg>Cruce en ferry</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-sun-horizon"/></svg>Playa y relax</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-waves"/></svg>Agua cristalina</li>
+            </ul>
+            <a class="btn btn--sun" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero ir a Isla Mujeres. ¿Me cotizan el tour?">
+              <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+              <span>Llévame a Isla Mujeres</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="tour tour--3">
+          <div class="tour__img">
+            <img src="assets/img/cozumel-palapa.webp" width="1100" height="1650" loading="lazy" decoding="async"
+                 alt="Palapa y hamaca en una playa de arena blanca con palmeras en Cozumel">
+          </div>
+          <div class="tour__body">
+            <h3 class="tour__name">Cozumel</h3>
+            <p class="tour__desc">La isla de los arrecifes: snorkel, playas y calma total.</p>
+            <ul class="chips">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-fish"/></svg>Arrecifes</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-goggles"/></svg>Snorkel</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-tree-palm"/></svg>Playas</li>
+            </ul>
+            <a class="btn btn--sun" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero mi día en Cozumel. ¿Me cotizan el tour?">
+              <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+              <span>Quiero mi día en Cozumel</span>
+            </a>
+          </div>
+        </article>
+
+        <div class="tours__outro">
+          <h3 class="tours__outro-title">¿Otro destino en mente?</h3>
+          <p class="lead">Cuéntanos tu plan y lo armamos juntos.</p>
+          <a class="btn btn--glass btn--lg" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, tengo otro plan en mente. ¿Me ayudan a armarlo?">
+            <span>Cuéntame tu plan</span>
+            <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="tours__progress" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       GALERÍA (zoom parallax)
+  ======================================================== -->
+  <section class="zoom" id="galeria" data-scrub="zoom" aria-labelledby="zoom-title">
+    <h2 class="sr-only" id="zoom-title">Galería: así se vive el Caribe con TMG Tours</h2>
+    <div class="zoom__pin">
+      <div class="z z--1" style="--k:3.8"><figure><img src="assets/img/cata-wake.webp" width="2000" height="1500" loading="lazy" decoding="async" alt="Catamarán dejando una estela blanca en el mar azul visto desde un dron"></figure></div>
+      <div class="z z--2" style="--k:5.2"><figure><img src="assets/img/chichen-wide.webp" width="2000" height="1034" loading="lazy" decoding="async" alt="Pirámide de Chichén Itzá bajo un cielo azul con nubes"></figure></div>
+      <div class="z z--3" style="--k:6.2"><figure><img src="assets/img/boat-wake.webp" width="1000" height="1500" loading="lazy" decoding="async" alt="Lancha navegando sobre agua turquesa vista desde arriba"></figure></div>
+      <div class="z z--4" style="--k:5.6"><figure><img src="assets/img/snorkel-aerial.webp" width="1800" height="1011" loading="lazy" decoding="async" alt="Personas haciendo snorkel sobre un arrecife turquesa vistas desde un dron"></figure></div>
+      <div class="z z--5" style="--k:6.8"><figure><img src="assets/img/isla-palms.webp" width="1800" height="1201" loading="lazy" decoding="async" alt="Palmeras sobre una playa de arena blanca y mar turquesa"></figure></div>
+      <div class="z z--6" style="--k:8"><figure><img src="assets/img/cozumel-coast.webp" width="1800" height="1349" loading="lazy" decoding="async" alt="Vista aérea de la costa caribeña con arrecifes y agua azul"></figure></div>
+      <div class="z z--7" style="--k:9"><figure><img src="assets/img/turquoise-reef.webp" width="1600" height="1199" loading="lazy" decoding="async" alt="Mar turquesa con arrecifes visto desde el aire"></figure></div>
+
+      <div class="zoom__end">
+        <h3 class="zoom__title">Tu turno de vivirlo.</h3>
+        <p class="zoom__text">Elige tu fecha y nos encargamos del resto.</p>
+        <a class="btn btn--sun btn--lg" href="#contacto" data-wa data-magnetic data-wa-msg="Hola TMG Tours, quiero vivir esta experiencia. ¿Me ayudan a elegir fecha y tour?">
+          <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+          <span>Quiero vivir esto</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       CÓMO RESERVAR (línea de ruta con scroll)
+  ======================================================== -->
+  <section class="route section" id="como-reservar" aria-labelledby="route-title">
+    <div class="container route__grid">
+      <div class="route__intro">
+        <p class="eyebrow" data-reveal>Cómo reservar</p>
+        <h2 class="h2" id="route-title" data-split>Reservar es tan fácil como mandar un mensaje.</h2>
+        <p class="lead" data-reveal>Sin formularios eternos ni letras chiquitas. Cuatro pasos y listo.</p>
+        <a class="btn btn--sun btn--lg" href="#contacto" data-wa data-reveal data-wa-msg="Hola TMG Tours, quiero empezar mi reservación. ¿Me ayudan?">
+          <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+          <span>Haz clic y empecemos</span>
+        </a>
+      </div>
+
+      <div class="route__timeline" data-scrub="route">
+        <div class="route__line" aria-hidden="true"><span class="route__fill"></span></div>
+        <div class="route__marker" aria-hidden="true"><img src="assets/img/logo-128.webp" width="128" height="128" alt="" loading="lazy"></div>
+
+        <ol class="route__steps">
+          <li class="step">
+            <span class="step__ic"><svg class="ic" aria-hidden="true"><use href="#i-chat-circle-text"/></svg></span>
+            <div class="step__body">
+              <h3 class="step__t">Escríbenos</h3>
+              <p class="step__d">Cuéntanos qué tour te interesa, la fecha y cuántas personas viajan.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__ic"><svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg></span>
+            <div class="step__body">
+              <h3 class="step__t">Recibe tu plan</h3>
+              <p class="step__d">Te respondemos con precio, qué incluye y qué se paga aparte.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-blank"/></svg></span>
+            <div class="step__body">
+              <h3 class="step__t">Confirma tu lugar</h3>
+              <p class="step__d">Apartamos tu fecha y te enviamos los detalles del día.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__ic"><svg class="ic" aria-hidden="true"><use href="#i-sun-horizon"/></svg></span>
+            <div class="step__body">
+              <h3 class="step__t">Disfruta el Caribe</h3>
+              <p class="step__d">Llega, sube y vive el día. De lo demás nos encargamos.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       POR QUÉ TMG (bento)
+  ======================================================== -->
+  <section class="why section" id="por-que-tmg" aria-labelledby="why-title">
+    <div class="container">
+      <h2 class="h2 why__title" id="why-title" data-split>Viaja tranquilo, nosotros cuidamos el plan.</h2>
+
+      <div class="bento">
+        <article class="cell cell--a" data-spot data-reveal="up">
+          <img class="cell__bg" src="assets/img/reef-coral.webp" width="1600" height="1067" loading="lazy" decoding="async" alt="Arrecife de coral con peces en agua cristalina del Caribe">
+          <div class="cell__shade" aria-hidden="true"></div>
+          <div class="cell__body">
+            <span class="cell__ic"><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg></span>
+            <h3 class="cell__t">Con operadores locales de la zona</h3>
+            <p class="cell__d">Trabajamos con proveedores que conocen el mar y las rutas de Cancún.</p>
+          </div>
+        </article>
+
+        <article class="cell cell--b" data-spot data-reveal="up" data-delay="1">
+          <span class="cell__ic"><svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg></span>
+          <h3 class="cell__t">Cero letras chiquitas</h3>
+          <p class="cell__d">Desde el inicio te decimos qué incluye cada tour y qué se paga aparte, como el ferry y el impuesto marino.</p>
+        </article>
+
+        <article class="cell cell--c" data-spot data-reveal="up" data-delay="2">
+          <span class="cell__ic"><svg class="ic" aria-hidden="true"><use href="#i-chats-circle"/></svg></span>
+          <h3 class="cell__t">Te responde una persona</h3>
+          <p class="cell__d">Resolvemos tus dudas directo por WhatsApp, sin formularios eternos.</p>
+        </article>
+
+        <article class="cell cell--d" data-spot data-reveal="up">
+          <div class="cell__big"><sup>$</sup><span data-count="599">599</span><small>MXN</small></div>
+          <h3 class="cell__t">Tarifa especial para menores</h3>
+          <p class="cell__d">En el catamarán, los más chicos de la familia pagan menos.</p>
+        </article>
+
+        <article class="cell cell--e" data-spot data-reveal="up" data-delay="1">
+          <span class="cell__ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-blank"/></svg></span>
+          <h3 class="cell__t">Tú pones la fecha</h3>
+          <p class="cell__d">Dinos cuándo viajas y cuántos son. Armamos el plan a tu medida.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       PREGUNTAS FRECUENTES
+  ======================================================== -->
+  <section class="faq section" id="preguntas" aria-labelledby="faq-title">
+    <div class="container faq__grid">
+      <div class="faq__intro">
+        <h2 class="h2" id="faq-title" data-split>Preguntas frecuentes.</h2>
+        <p class="lead" data-reveal>Lo que más nos preguntan antes de reservar. ¿Falta algo? Escríbenos.</p>
+      </div>
+
+      <div class="faq__list" data-accordion>
+        <div class="qa">
+          <h3 class="qa__h"><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-1" id="qa-q-1">
+            <span>¿Cuánto cuesta el tour en catamarán?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+          </button></h3>
+          <div class="qa__a" id="qa-1" role="region" aria-labelledby="qa-q-1"><div><p>Cuesta $699 MXN por adulto y $599 MXN por menor. No incluye boletos de ferry ni impuesto marino.</p></div></div>
+        </div>
+
+        <div class="qa">
+          <h3 class="qa__h"><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-2" id="qa-q-2">
+            <span>¿Qué incluye el tour en catamarán?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+          </button></h3>
+          <div class="qa__a" id="qa-2" role="region" aria-labelledby="qa-q-2"><div><p>Incluye las actividades que ves en nuestros videos: paseo en catamarán, snorkel, banco de arena y encuentro con rayas. Los boletos de ferry y el impuesto marino se pagan aparte. Te confirmamos todos los detalles por WhatsApp antes de reservar.</p></div></div>
+        </div>
+
+        <div class="qa">
+          <h3 class="qa__h"><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-3" id="qa-q-3">
+            <span>¿Cómo reservo mi tour?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+          </button></h3>
+          <div class="qa__a" id="qa-3" role="region" aria-labelledby="qa-q-3"><div><p>Escríbenos por WhatsApp o llena el formulario de esta página con el tour, la fecha y cuántas personas viajan. Te respondemos con disponibilidad, precio y qué incluye.</p></div></div>
+        </div>
+
+        <div class="qa">
+          <h3 class="qa__h"><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-4" id="qa-q-4">
+            <span>¿Cuánto cuestan Chichén Itzá, Isla Mujeres y Cozumel?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+          </button></h3>
+          <div class="qa__a" id="qa-4" role="region" aria-labelledby="qa-q-4"><div><p>El precio depende de la fecha, el número de personas y lo que quieras incluir. Escríbenos por WhatsApp y te cotizamos.</p></div></div>
+        </div>
+
+        <div class="qa">
+          <h3 class="qa__h"><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-5" id="qa-q-5">
+            <span>¿Los niños pagan tarifa especial?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+          </button></h3>
+          <div class="qa__a" id="qa-5" role="region" aria-labelledby="qa-q-5"><div><p>Sí. En el tour en catamarán los menores pagan $599 MXN en lugar de $699 MXN. Para los demás tours, pregúntanos por WhatsApp.</p></div></div>
+        </div>
+
+        <div class="qa">
+          <h3 class="qa__h"><button class="qa__q" type="button" aria-expanded="false" aria-controls="qa-6" id="qa-q-6">
+            <span>¿Qué debo llevar al tour?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+          </button></h3>
+          <div class="qa__a" id="qa-6" role="region" aria-labelledby="qa-q-6"><div><p>Traje de baño, toalla, bloqueador solar biodegradable, ropa cómoda, efectivo y tu celular o cámara con funda acuática.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       CONTACTO (formulario que redirige a WhatsApp)
+  ======================================================== -->
+  <section class="contact" id="contacto" aria-labelledby="contact-title">
+    <div class="contact__bg" aria-hidden="true">
+      <img src="assets/img/sunset-palms.webp" width="2200" height="1467" loading="lazy" decoding="async" alt="" data-parallax="0.12">
+      <div class="contact__shade"></div>
+    </div>
+
+    <div class="container contact__grid">
+      <div class="contact__copy">
+        <p class="eyebrow" data-reveal>Hablemos</p>
+        <h2 class="h2" id="contact-title" data-split>Tu próxima historia en el Caribe empieza con un mensaje.</h2>
+        <p class="lead" data-reveal>Cuéntanos qué tour te interesa y la fecha. Te respondemos por WhatsApp con disponibilidad y precio.</p>
+        <a class="contact__direct" href="#contacto" data-wa data-reveal data-wa-msg="Hola TMG Tours, quiero información de sus tours en Cancún.">
+          <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+          <span>Prefiero escribir directo por WhatsApp</span>
+          <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+        </a>
+      </div>
+
+      <form class="form" id="wa-form" novalidate data-reveal="up" aria-labelledby="form-title">
+        <h3 class="form__title" id="form-title">Arma tu plan</h3>
+
+        <div class="field">
+          <label for="f-nombre">Tu nombre</label>
+          <input id="f-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" placeholder="Ej. María López">
+          <p class="field__err" id="e-nombre" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="f-tour">¿Qué tour te interesa?</label>
+          <div class="select">
+            <select id="f-tour" name="tour" required>
+              <option value="" selected disabled>Elige una opción</option>
+              <option>Catamarán con snorkel</option>
+              <option>Chichén Itzá</option>
+              <option>Isla Mujeres</option>
+              <option>Cozumel</option>
+              <option>Aún no lo sé, necesito ayuda</option>
+            </select>
+            <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          </div>
+          <p class="field__err" id="e-tour" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="f-fecha">Fecha aproximada</label>
+          <input id="f-fecha" name="fecha" type="date">
+          <p class="field__err" id="e-fecha" role="alert"></p>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="f-adultos">Adultos</label>
+            <div class="stepper" data-stepper>
+              <button type="button" data-step="-1" aria-label="Menos adultos"><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg></button>
+              <input id="f-adultos" name="adultos" type="number" inputmode="numeric" min="1" max="40" value="2">
+              <button type="button" data-step="1" aria-label="Más adultos"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </div>
+            <p class="field__err" id="e-adultos" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="f-menores">Menores</label>
+            <div class="stepper" data-stepper>
+              <button type="button" data-step="-1" aria-label="Menos menores"><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg></button>
+              <input id="f-menores" name="menores" type="number" inputmode="numeric" min="0" max="40" value="0">
+              <button type="button" data-step="1" aria-label="Más menores"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-msg">Algo más que quieras contarnos <span class="opt">(opcional)</span></label>
+          <textarea id="f-msg" name="comentarios" rows="3" placeholder="Hotel, edad de los menores, ocasión especial..."></textarea>
+        </div>
+
+        <button class="btn btn--sun btn--lg btn--block form__submit" type="submit">
+          <span class="btn__label"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>Enviar mi plan por WhatsApp</span>
+          <span class="btn__loading" aria-hidden="true"><i class="spinner"></i>Abriendo WhatsApp</span>
+          <span class="btn__done" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check-circle"/></svg>Listo, revisa WhatsApp</span>
+        </button>
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="fine form__fine">Al enviar se abre WhatsApp con tu mensaje listo. Tú decides si lo mandas.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a class="brand brand--lg" href="#inicio" aria-label="TMG Tours, ir al inicio">
+        <img class="brand__logo" src="assets/img/logo-128.webp" width="128" height="128" alt="" loading="lazy">
+        <span class="brand__name">TMG <b>Tours</b></span>
+      </a>
+      <p class="footer__tag">Tours en Cancún con atención directa por WhatsApp.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Pie de página">
+      <h2 class="footer__h">Explora</h2>
+      <ul>
+        <li><a href="#catamaran">Tour en catamarán</a></li>
+        <li><a href="#tours">Chichén Itzá, Isla Mujeres y Cozumel</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#como-reservar">Cómo reservar</a></li>
+        <li><a href="#preguntas">Preguntas frecuentes</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__contact">
+      <h2 class="footer__h">Contacto</h2>
+      <ul>
+        <li><a href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero información de sus tours en Cancún."><svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg><span data-wa-display>Escríbenos por WhatsApp</span></a></li>
+        <li><span class="footer__addr"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg>Cancún, Quintana Roo, México</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer__legal">
+    <p>© <span id="year">2026</span> TMG Tours. Todos los derechos reservados.</p>
+    <p>Precios en pesos mexicanos (MXN), sujetos a disponibilidad y cambios sin previo aviso. Imágenes ilustrativas.</p>
+  </div>
+</footer>
+
+<!-- =========================================================
+     BOTÓN FLOTANTE DE WHATSAPP
+========================================================== -->
+<div class="wa-float" id="wa-float">
+  <p class="wa-float__bubble" id="wa-bubble" role="status">
+    <span>¿Te ayudo a elegir tu tour?</span>
+    <button type="button" class="wa-float__x" id="wa-bubble-x" aria-label="Cerrar mensaje"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </p>
+  <a class="wa-float__btn" href="#contacto" data-wa data-wa-msg="Hola TMG Tours, quiero ayuda para elegir mi tour en Cancún." aria-label="Escríbenos por WhatsApp">
+    <span class="wa-float__pulse" aria-hidden="true"></span>
+    <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+  </a>
+</div>
+
+<!-- Scroll suave con inercia (Lenis, MIT). Opcional: si no carga, el sitio usa el scroll nativo -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="script.js" defer></script>
+
+<!--
+  Créditos de fotografía (licencia Pexels, uso libre): IDs 9408818, 746683, 6153309, 3290068, 5007457,
+  12858509, 11481545, 7981725, 2887293, 4810311, 35919338, 1731791, 4669603.
+  Reels: material proporcionado por el cliente.
+-->
+</body>
+</html>
