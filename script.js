@@ -4,11 +4,12 @@
  *  0. Configuración  (EDITAR el número de WhatsApp aquí)
  *  1. Utilidades
  *  2. WhatsApp (enlaces, formulario, burbuja flotante)
+ *  2b. Idioma ES / EN en tiempo real (el inglés vive en los atributos data-en* del HTML)
  *  3. Loader
  *  4. Scroll: Lenis + bucle único (rAF) que alimenta todas las escenas
  *  5. Escenas ligadas al scroll (manifiesto, imagen que se abre, tours horizontales, zoom, ruta)
  *  6. Hero (rotador de palabras, partículas, tilt 3D)
- *  7. UI (menú, FAQ, videos, contadores, efectos de cursor)
+ *  7. UI (menú, FAQ, videos, contadores, efectos de cursor, diálogo "qué incluye" de los tours)
  *
  * Nota de rendimiento: no se usa ningún listener de "scroll". Un solo requestAnimationFrame lee la
  * posición y escribe variables CSS (--p, --pe, --pz...) solo en las escenas visibles.
@@ -118,35 +119,40 @@
       if (out) out.textContent = message || '';
     }
 
+    langHooks.push(function () {
+      ['nombre', 'tour', 'fecha', 'adultos'].forEach(function (k) { setError(k, ''); });
+      status.textContent = ''; status.classList.remove('is-error');
+    });
+
     function validate() {
       var first = null;
       function check(key, message) {
         setError(key, message);
         if (message && !first) first = fields[key];
       }
-      check('nombre', fields.nombre.value.trim().length < 2 ? 'Escribe tu nombre para saber cómo llamarte.' : '');
-      check('tour', !fields.tour.value ? 'Elige el tour que te interesa.' : '');
-      check('fecha', fields.fecha.value && fields.fecha.value < today ? 'Elige una fecha de hoy en adelante.' : '');
+      check('nombre', fields.nombre.value.trim().length < 2 ? t('errName') : '');
+      check('tour', !fields.tour.value ? t('errTour') : '');
+      check('fecha', fields.fecha.value && fields.fecha.value < today ? t('errDate') : '');
       var adults = parseInt(fields.adultos.value, 10);
-      check('adultos', !(adults >= 1) ? 'Debe viajar al menos 1 adulto.' : '');
+      check('adultos', !(adults >= 1) ? t('errAdults') : '');
       if (first) first.focus();
       return !first;
     }
 
     function buildMessage() {
-      var lines = ['Hola TMG Tours, quiero cotizar un tour.', ''];
-      lines.push('Nombre: ' + fields.nombre.value.trim());
-      lines.push('Tour: ' + fields.tour.value);
+      var lines = [t('msgHello'), ''];
+      lines.push(t('msgName') + ': ' + fields.nombre.value.trim());
+      lines.push(t('msgTour') + ': ' + fields.tour.value);
       if (fields.fecha.value) {
         var p = fields.fecha.value.split('-');
-        lines.push('Fecha aproximada: ' + p[2] + '/' + p[1] + '/' + p[0]);
+        lines.push(t('msgDate') + ': ' + p[2] + '/' + p[1] + '/' + p[0]);
       } else {
-        lines.push('Fecha aproximada: por definir');
+        lines.push(t('msgDate') + ': ' + t('msgTbd'));
       }
-      lines.push('Adultos: ' + (parseInt(fields.adultos.value, 10) || 1));
-      lines.push('Menores: ' + (parseInt(fields.menores.value, 10) || 0));
+      lines.push(t('msgAdults') + ': ' + (parseInt(fields.adultos.value, 10) || 1));
+      lines.push(t('msgKids') + ': ' + (parseInt(fields.menores.value, 10) || 0));
       var extra = fields.msg.value.trim();
-      if (extra) lines.push('Comentarios: ' + extra);
+      if (extra) lines.push(t('msgNotes') + ': ' + extra);
       return lines.join('\n');
     }
 
@@ -158,19 +164,19 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validate()) {
-        status.textContent = 'Revisa los campos marcados.';
+        status.textContent = t('fixFields');
         status.classList.add('is-error');
         return;
       }
       status.classList.remove('is-error');
       submit.classList.add('is-loading');
-      status.textContent = 'Abriendo WhatsApp con tu mensaje listo...';
+      status.textContent = t('opening');
       openWhatsApp(buildMessage());
 
       setTimeout(function () {
         submit.classList.remove('is-loading');
         submit.classList.add('is-done');
-        status.textContent = 'Listo. Si WhatsApp no se abrió, revisa que tu navegador permita ventanas emergentes.';
+        status.textContent = t('opened');
       }, 900);
       setTimeout(function () {
         submit.classList.remove('is-done');
@@ -209,6 +215,134 @@
     if (dismissed) return;
     setTimeout(function () { wrap.classList.add('show-bubble'); }, 7000);
     setTimeout(function () { hide(false); }, 17000);
+  }
+
+  /* ===================================================================
+     2b. IDIOMA (ES / EN en tiempo real, sin recargar)
+     - El español vive en el HTML. El inglés vive junto a cada elemento:
+         data-en="..."          -> texto (admite <strong>, <mark>...)
+         data-en-alt / -label / -ph / -msg / -content / -text  -> alt, aria-label, placeholder,
+                                   mensaje de WhatsApp, <meta content>, data-text
+     - Al iniciar se guarda el español en data-es* para poder volver a él.
+     - Los textos que genera este archivo (errores, mensaje de WhatsApp...) salen de STR.
+  =================================================================== */
+  var STR = {
+    es: {
+      menuOpen: 'Abrir menú', menuClose: 'Cerrar menú',
+      vidPause: 'Pausar video', vidPlay: 'Reproducir video', vidMute: 'Silenciar video', vidSound: 'Activar sonido',
+      errName: 'Escribe tu nombre para saber cómo llamarte.',
+      errTour: 'Elige el tour que te interesa.',
+      errDate: 'Elige una fecha de hoy en adelante.',
+      errAdults: 'Debe viajar al menos 1 adulto.',
+      fixFields: 'Revisa los campos marcados.',
+      opening: 'Abriendo WhatsApp con tu mensaje listo...',
+      opened: 'Listo. Si WhatsApp no se abrió, revisa que tu navegador permita ventanas emergentes.',
+      msgHello: 'Hola TMG Tours, quiero cotizar un tour.',
+      msgName: 'Nombre', msgTour: 'Tour', msgDate: 'Fecha aproximada', msgTbd: 'por definir',
+      msgAdults: 'Adultos', msgKids: 'Menores', msgNotes: 'Comentarios'
+    },
+    en: {
+      menuOpen: 'Open menu', menuClose: 'Close menu',
+      vidPause: 'Pause video', vidPlay: 'Play video', vidMute: 'Mute video', vidSound: 'Turn sound on',
+      errName: 'Enter your name so we know what to call you.',
+      errTour: 'Choose the tour you are interested in.',
+      errDate: 'Pick a date from today onward.',
+      errAdults: 'At least 1 adult must travel.',
+      fixFields: 'Please check the highlighted fields.',
+      opening: 'Opening WhatsApp with your message ready...',
+      opened: 'Done. If WhatsApp did not open, check that your browser allows pop-ups.',
+      msgHello: 'Hello TMG Tours, I would like a quote for a tour.',
+      msgName: 'Name', msgTour: 'Tour', msgDate: 'Approximate date', msgTbd: 'to be decided',
+      msgAdults: 'Adults', msgKids: 'Children', msgNotes: 'Comments'
+    }
+  };
+  var LANG_ATTRS = [
+    ['alt', 'alt'], ['label', 'aria-label'], ['ph', 'placeholder'],
+    ['msg', 'data-wa-msg'], ['content', 'content'], ['text', 'data-text']
+  ];
+  var lang = 'es';
+  var i18nLive = false;   // true cuando la página ya arrancó: ahí sí hay que volver a partir titulares por palabra
+  var langHooks = [];     // funciones que se ejecutan al cambiar de idioma (textos que arma el JS)
+
+  function t(key) { return (STR[lang] && STR[lang][key]) || STR.es[key] || key; }
+
+  function captureSpanish() {
+    $$('[data-en]').forEach(function (el) {
+      el.setAttribute('data-es', el.tagName === 'TITLE' ? el.textContent : el.innerHTML);
+    });
+    LANG_ATTRS.forEach(function (p) {
+      $$('[data-en-' + p[0] + ']').forEach(function (el) {
+        el.setAttribute('data-es-' + p[0], el.getAttribute(p[1]) || '');
+      });
+    });
+  }
+
+  function applyLang(next) {
+    lang = next === 'en' ? 'en' : 'es';
+    $$('[data-en]').forEach(function (el) {
+      if (el.hasAttribute('data-wa-display') && !waIsPlaceholder) return; // ya muestra el número real
+      var v = el.getAttribute('data-' + lang);
+      if (v === null) return;
+      if (el.tagName === 'TITLE') { document.title = v; return; }
+      el.innerHTML = v;
+      if (!i18nLive) return;
+      if (el.hasAttribute('data-split')) splitWords(el, 'sp', 'sp__i');
+      if (el.hasAttribute('data-words')) el.style.setProperty('--n', splitWords(el, 'w'));
+    });
+    LANG_ATTRS.forEach(function (p) {
+      $$('[data-en-' + p[0] + ']').forEach(function (el) {
+        var v = el.getAttribute('data-' + lang + '-' + p[0]);
+        if (v !== null) el.setAttribute(p[1], v);
+      });
+    });
+    html.lang = lang === 'en' ? 'en' : 'es-MX';
+    $$('[data-wa]').forEach(function (a) { a.href = waUrl(a.getAttribute('data-wa-msg')); });
+    $$('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    langHooks.forEach(function (fn) { safe('langHook', fn); });
+    if (i18nLive) queueMeasure(80); // los textos en inglés miden distinto: recalcula las escenas ancladas
+  }
+
+  function setLang(next) {
+    if (next === lang) return;
+    applyLang(next);
+    try { localStorage.setItem('tmg-lang', lang); } catch (e) { /* sin storage */ }
+  }
+
+  function initI18n() {
+    captureSpanish();
+    // Idioma inicial: ?lang=en | ?lang=es  >  el último que eligió la persona  >  español
+    var wanted = '';
+    var m = /[?&]lang=(es|en)\b/i.exec(window.location.search || '');
+    if (m) {
+      wanted = m[1].toLowerCase();
+      try { localStorage.setItem('tmg-lang', wanted); } catch (e) { /* sin storage */ }
+    } else {
+      try { wanted = localStorage.getItem('tmg-lang') || ''; } catch (e) { /* sin storage */ }
+    }
+    if (wanted === 'en') applyLang('en');
+
+    $$('[data-lang]').forEach(function (btn) {
+      btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
+    });
+    initLangHint();
+  }
+
+  // Aviso (tooltip) de que existe la versión en inglés: una vez por sesión y solo si se lee en español
+  function initLangHint() {
+    var box = $('.lang');
+    if (!box) return;
+    var seen = false;
+    try { seen = sessionStorage.getItem('tmg-lang-hint') === '1'; } catch (e) { /* sin storage */ }
+    function hide() { box.classList.remove('show-hint'); }
+    function remember() { try { sessionStorage.setItem('tmg-lang-hint', '1'); } catch (e) { /* sin storage */ } }
+    ['pointerenter', 'focusin', 'click'].forEach(function (ev) {
+      box.addEventListener(ev, function () { hide(); remember(); });
+    });
+    if (seen || lang !== 'es') return;
+    onReadyCallbacks.push(function () {
+      setTimeout(function () { if (lang === 'es') { box.classList.add('show-hint'); remember(); } }, 2800);
+      setTimeout(hide, 9800);
+    });
   }
 
   /* ===================================================================
@@ -769,13 +903,13 @@
   var menu, burger;
   function openMenu() {
     menu.classList.add('is-open'); menu.inert = false;
-    burger.setAttribute('aria-expanded', 'true'); burger.setAttribute('aria-label', 'Cerrar menú');
+    burger.setAttribute('aria-expanded', 'true'); burger.setAttribute('aria-label', t('menuClose'));
     html.style.overflow = 'hidden'; if (lenis) lenis.stop();
   }
   function closeMenu(silent) {
     if (!menu || !menu.classList.contains('is-open')) return;
     menu.classList.remove('is-open'); menu.inert = true;
-    burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Abrir menú');
+    burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', t('menuOpen'));
     html.style.overflow = ''; if (lenis && loaderDone) lenis.start();
     if (!silent) burger.focus();
   }
@@ -783,6 +917,8 @@
     menu = $('#menu'); burger = $('#burger');
     if (!menu || !burger) return;
     menu.inert = true;
+    function syncBurger() { burger.setAttribute('aria-label', t(menu.classList.contains('is-open') ? 'menuClose' : 'menuOpen')); }
+    langHooks.push(syncBurger); syncBurger();
     burger.addEventListener('click', function () { menu.classList.contains('is-open') ? closeMenu() : openMenu(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
     $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { if (a.hasAttribute('data-wa')) closeMenu(true); }); });
@@ -891,12 +1027,12 @@
     function syncPlay() {
       var playing = !feature.paused;
       playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
-      playBtn.setAttribute('aria-label', playing ? 'Pausar video' : 'Reproducir video');
+      playBtn.setAttribute('aria-label', t(playing ? 'vidPause' : 'vidPlay'));
     }
     function syncMute() {
       var sound = !feature.muted;
       muteBtn.setAttribute('aria-pressed', sound ? 'true' : 'false');
-      muteBtn.setAttribute('aria-label', sound ? 'Silenciar video' : 'Activar sonido');
+      muteBtn.setAttribute('aria-label', t(sound ? 'vidMute' : 'vidSound'));
     }
     feature.addEventListener('play', syncPlay); feature.addEventListener('pause', syncPlay);
     playBtn.addEventListener('click', function () {
@@ -906,6 +1042,7 @@
       feature.muted = !feature.muted; syncMute();
       if (!feature.muted && feature.paused) { delete feature.dataset.userPaused; play(feature); }
     });
+    langHooks.push(function () { syncPlay(); syncMute(); });
     syncPlay(); syncMute();
   }
 
@@ -931,6 +1068,95 @@
     });
   }
 
+  /* ---------- Detalle de tours: diálogo "qué incluye" (se abre desde las tarjetas de Tours) ---------- */
+  function initTourDialog() {
+    var dlg = $('#tdlg');
+    var openers = $$('[data-tour-open]');
+    if (!dlg || typeof dlg.showModal !== 'function') { openers.forEach(function (b) { b.hidden = true; }); return; }
+    var sheet = $('.tdlg__sheet', dlg);
+    var panels = $$('.tp', dlg);
+    var chichen = $('.tp[data-tour="chichen"]', dlg);
+    var tabs = $$('.seg__btn', dlg);
+    var closing = false;
+    var downOnBackdrop = false;
+
+    function pauseVideos(except) {
+      $$('video', dlg).forEach(function (v) { if (v !== except) v.pause(); });
+    }
+
+    // Chichén Itzá: una categoría visible a la vez (flyer, extras y botón de WhatsApp)
+    function setCat(cat) {
+      tabs.forEach(function (tab) {
+        var on = tab.getAttribute('data-cat') === cat;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        if (on) $('.tp__info', chichen).setAttribute('aria-labelledby', tab.id);
+      });
+      $$('[data-cat]', chichen).forEach(function (el) {
+        if (!el.classList.contains('seg__btn')) el.hidden = el.getAttribute('data-cat') !== cat;
+      });
+    }
+
+    function openTour(name) {
+      var panel = panels.filter(function (p) { return p.getAttribute('data-tour') === name; })[0];
+      if (!panel) return;
+      panels.forEach(function (p) { p.hidden = p !== panel; });
+      dlg.setAttribute('aria-labelledby', $('.tp__title', panel).id);
+      if (panel === chichen) setCat('clasico');
+      pauseVideos();
+      closing = false;
+      dlg.classList.remove('is-closing');
+      html.style.overflow = 'hidden'; if (lenis) lenis.stop();
+      dlg.showModal();
+      sheet.scrollTop = 0; // después de abrir: mientras está oculto el navegador conserva el scroll anterior
+    }
+
+    function requestClose() {
+      if (closing || !dlg.open) return;
+      closing = true;
+      if (reduce) { dlg.close(); return; }
+      dlg.classList.add('is-closing');
+      setTimeout(function () { dlg.close(); }, 230);
+    }
+
+    dlg.addEventListener('close', function () {
+      closing = false;
+      dlg.classList.remove('is-closing');
+      pauseVideos();
+      html.style.overflow = ''; if (lenis && loaderDone) lenis.start();
+    });
+    dlg.addEventListener('cancel', function (e) { e.preventDefault(); requestClose(); }); // Esc
+    dlg.addEventListener('pointerdown', function (e) { downOnBackdrop = e.target === dlg; });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg && downOnBackdrop) requestClose(); });
+    $('[data-tdlg-close]', dlg).addEventListener('click', requestClose);
+    openers.forEach(function (b) {
+      b.addEventListener('click', function () { openTour(b.getAttribute('data-tour-open')); });
+    });
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { setCat(tab.getAttribute('data-cat')); });
+      tab.addEventListener('keydown', function (e) {
+        var to = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
+        if (to < 0) return;
+        e.preventDefault();
+        var next = tabs[(to + tabs.length) % tabs.length];
+        setCat(next.getAttribute('data-cat'));
+        next.focus();
+      });
+    });
+
+    // Videos: póster + botón de play; al reproducir aparecen los controles nativos (con sonido)
+    $$('[data-tvid]', dlg).forEach(function (fig) {
+      var v = $('video', fig);
+      $('.tvid__play', fig).addEventListener('click', function () {
+        v.controls = true;
+        var p = v.play(); if (p && p.catch) p.catch(function () { /* el navegador bloqueó la reproducción */ });
+      });
+      v.addEventListener('play', function () { fig.classList.add('is-playing'); pauseVideos(v); });
+      v.addEventListener('ended', function () { fig.classList.remove('is-playing'); v.controls = false; });
+    });
+  }
+
   /* ===================================================================
      ARRANQUE
   =================================================================== */
@@ -941,10 +1167,12 @@
 
     var year = $('#year'); if (year) year.textContent = new Date().getFullYear();
 
+    safe('i18n', initI18n);
     safe('whatsapp', initWhatsAppLinks);
     safe('form', initForm);
     safe('waFloat', initWaFloat);
     safe('menu', initMenu);
+    safe('tourDialog', initTourDialog);
 
     safe('manifesto', initManifesto);
     safe('scene', initScene);
@@ -965,6 +1193,7 @@
     safe('pointer', initPointerEffects);
     safe('scroll', startScroll);
 
+    i18nLive = true;
     measureAll();
     initLoader();
   }
